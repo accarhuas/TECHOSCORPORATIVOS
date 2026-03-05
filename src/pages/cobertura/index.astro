@@ -1,0 +1,125 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { coveragePages } from "../../data/site";
+
+const title = "Cobertura de reparacion de techos en Chile | Techos Corporativos";
+const description =
+  "Cobertura de reparacion de techos en Santiago y regiones de Chile. Coordinacion por zona, criticidad y continuidad operativa.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero-shell">
+    <div class="wrap hero-box">
+      <span class="kicker">Cobertura nacional</span>
+      <h1>Reparacion de techos en Santiago y regiones</h1>
+      <p>
+        Coordinamos atencion tecnica segun criticidad y disponibilidad operativa. La cobertura se
+        programa por tipo de instalacion, urgencia y distancia de ejecucion.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/contacto/">Consultar disponibilidad</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-2">
+      <article class="panel card">
+        <h2>Comunas de cobertura prioritaria (RM)</h2>
+        <p>
+          Creamos una subpagina por comuna para que revises alcance tecnico, foco operativo y
+          tiempos de atencion:
+        </p>
+        <ul class="communes">
+          {
+            coveragePages.map((commune) => (
+              <li>
+                <a href={`/reparacion-techos/${commune.slug}/`}>
+                  <strong>{commune.name}</strong>
+                  <small>{commune.responseWindow}</small>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+      <article class="panel card">
+        <h2>Zonas de atencion complementaria</h2>
+        <ul class="clean">
+          <li>Region Metropolitana (otras comunas por coordinacion)</li>
+          <li>Valparaiso y zona centro</li>
+          <li>Biobio y macrozona sur</li>
+          <li>Atencion en otras regiones por requerimiento</li>
+        </ul>
+      </article>
+      <article class="panel card card-full">
+        <h2>Modelo de coordinacion</h2>
+        <ul class="clean">
+          <li>Visita tecnica inicial y levantamiento</li>
+          <li>Planificacion por sector y horario operativo</li>
+          <li>Ejecucion por etapas</li>
+          <li>Reporte consolidado por sede o red</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .grid-2 {
+    align-items: stretch;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card-full {
+    grid-column: 1 / -1;
+  }
+
+  .communes {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .communes li {
+    padding: 0;
+  }
+
+  .communes a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #f7fbfd;
+    padding: 0.5rem 0.65rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .communes a strong {
+    font-size: 1rem;
+  }
+
+  .communes a small {
+    color: var(--ink-soft);
+    font-size: 0.83rem;
+  }
+
+  .communes a:hover {
+    border-color: #aec9da;
+    background: #f0f8fc;
+  }
+
+  @media (max-width: 640px) {
+    .communes {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

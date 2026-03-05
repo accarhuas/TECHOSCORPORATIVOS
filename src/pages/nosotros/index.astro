@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig } from "../../data/site";
+
+const title = "Nosotros | Equipo tecnico de techumbres B2B";
+const description =
+  "Equipo especializado en reparacion y mantencion de techumbres industriales para empresas, bodegas, colegios y sucursales en Chile.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero-shell">
+    <div class="wrap hero-box">
+      <span class="kicker">Quienes somos</span>
+      <h1>Equipo tecnico orientado a continuidad operativa</h1>
+      <p>
+        Somos una empresa enfocada en reparacion de techos para infraestructura corporativa.
+        Priorizamos seguridad, trazabilidad y estandares tecnicos replicables entre sedes.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-2">
+      <article class="panel card">
+        <h2>Nuestro enfoque</h2>
+        <ul class="clean">
+          <li>Diagnostico tecnico antes de intervenir</li>
+          <li>Ejecucion por criticidad y riesgo</li>
+          <li>Reportes claros para decisiones de gerencia</li>
+          <li>Planificacion para no detener operacion</li>
+        </ul>
+      </article>
+      <article class="panel card">
+        <h2>Datos clave</h2>
+        <ul class="clean">
+          <li>{siteConfig.yearsExperience} de experiencia acumulada</li>
+          <li>Atencion para empresas con multiples sedes</li>
+          <li>Cobertura nacional segun plan operativo</li>
+          <li>Coordinacion con equipos de mantenimiento internos</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .card {
+    padding: 1rem;
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+  bullets: string[];
+  process: string[];
+}
+
+const { title, description, h1, intro, bullets, process } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero-shell">
+    <div class="wrap hero-box">
+      <span class="kicker">Servicio especializado</span>
+      <h1>{h1}</h1>
+      <p>{intro}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/contacto/">Solicitar evaluacion tecnica</a>
+        <a class="btn btn-secondary" href="/servicios/">Volver a servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-2">
+      <article class="panel card">
+        <h2>Que incluye este servicio</h2>
+        <ul class="clean">
+          {bullets.map((item) => <li>{item}</li>)}
+        </ul>
+      </article>
+      <article class="panel card">
+        <h2>Metodologia de ejecucion</h2>
+        <ol>
+          {process.map((step) => <li>{step}</li>)}
+        </ol>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .card {
+    padding: 1rem;
+  }
+
+  ol {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--ink-soft);
+  }
+
+  li {
+    margin-bottom: 0.45rem;
+  }
+</style>

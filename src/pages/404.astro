@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Pagina no encontrada | Techos Corporativos";
+const description = "La pagina solicitada no existe. Revisa servicios y contacto de Techos Corporativos.";
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <section class="section">
+    <div class="wrap panel box">
+      <span class="kicker">404</span>
+      <h1>Pagina no encontrada</h1>
+      <p>La URL que intentaste abrir no esta disponible o fue movida.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/">Volver al inicio</a>
+        <a class="btn btn-secondary" href="/contacto/">Ir a contacto</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .box {
+    text-align: center;
+    padding: 1.2rem;
+  }
+</style>

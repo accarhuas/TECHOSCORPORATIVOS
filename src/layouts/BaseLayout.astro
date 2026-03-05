@@ -1,11 +1,26 @@
 ---
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import { siteConfig } from "../data/site";
+
 interface Props {
   title: string;
   description: string;
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.name,
+  legalName: siteConfig.legalName,
+  url: siteConfig.siteUrl,
+  areaServed: siteConfig.serviceArea,
+  email: siteConfig.email,
+  telephone: siteConfig.phoneDisplay
+};
 ---
 
 <!doctype html>
@@ -16,7 +31,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large"} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_CL" />
     <meta property="og:title" content={title} />
@@ -34,7 +49,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     />
   </head>
   <body>
-    <slot />
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <Navbar />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>
 
@@ -67,6 +88,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     color: var(--ink);
     font-family: "Source Sans 3", sans-serif;
     line-height: 1.45;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+  }
+
+  .skip-link:focus {
+    left: 10px;
+    top: 10px;
+    z-index: 50;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid var(--line);
   }
 
   h1,
@@ -166,6 +203,46 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 
   .grid-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hero-shell {
+    padding: clamp(1.2rem, 4vw, 3rem) 0 clamp(2rem, 5vw, 4rem);
+  }
+
+  .hero-box {
+    border-radius: var(--radius);
+    padding: clamp(1.1rem, 3vw, 2rem);
+    color: #fff;
+    background: linear-gradient(162deg, #0f2033 5%, #0c3a56 55%, #0075a2 100%);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-box::after {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    right: -170px;
+    top: -230px;
+    border-radius: 50%;
+    background: rgba(255, 138, 0, 0.24);
+  }
+
+  .hero-box p {
+    color: #d4e9f4;
+    max-width: 72ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .cards .card {
+    padding: 1rem;
   }
 
   ul.clean {

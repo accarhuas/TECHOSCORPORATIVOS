@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sectorCards } from "../../data/site";
+
+const title = "Sectores atendidos | Reparacion de techos B2B";
+const description =
+  "Atendemos bancos, retail, colegios, salud, bodegas y empresas con sucursales. Mantencion y reparacion de techumbres en Chile.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero-shell">
+    <div class="wrap hero-box">
+      <span class="kicker">Segmentacion comercial</span>
+      <h1>Reparacion de techos por tipo de institucion</h1>
+      <p>
+        Adaptamos el servicio a ventanas operativas, protocolos de seguridad y nivel de
+        criticidad de cada industria o red de sedes.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/contacto/">Solicitar propuesta por sector</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-3 cards">
+      {
+        sectorCards.map((sector) => (
+          <article class="panel card">
+            <h2>{sector}</h2>
+            <p>
+              Plan de trabajo por etapas, reportes centralizados y ejecucion sin frenar
+              continuidad del negocio.
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .card {
+    padding: 1rem;
+  }
+</style>

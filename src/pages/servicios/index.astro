@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { serviceLinks } from "../../data/site";
+
+const title = "Servicios de reparacion de techos | Techos Corporativos";
+const description =
+  "Servicios B2B de reparacion de techos: filtraciones, goteras, impermeabilizacion, cambio de techos y mantencion anual en Chile.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero-shell">
+    <div class="wrap hero-box">
+      <span class="kicker">Portafolio tecnico</span>
+      <h1>Servicios de reparacion y mantencion de techumbres</h1>
+      <p>
+        Atendemos infraestructura empresarial con enfoque preventivo y correctivo. Cada servicio
+        se ejecuta con diagnostico, plan tecnico y reporte de cierre.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/contacto/">Solicitar visita tecnica</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-2 cards">
+      {
+        serviceLinks.map((item) => (
+          <article class="panel card">
+            <h2>{item.title}</h2>
+            <p>{item.summary}</p>
+            <a href={item.href}>Ver subpagina</a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap panel process">
+      <h2>Como trabajamos</h2>
+      <ol>
+        <li>Inspeccion tecnica y levantamiento de riesgo.</li>
+        <li>Diagnostico con propuesta de reparacion o reemplazo.</li>
+        <li>Ejecucion con plan de seguridad y continuidad operativa.</li>
+        <li>Entrega de informe tecnico con recomendaciones.</li>
+      </ol>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .card {
+    padding: 1rem;
+  }
+
+  .card a {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--brand);
+  }
+
+  .process {
+    padding: 1rem;
+  }
+
+  .process ol {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--ink-soft);
+  }
+</style>

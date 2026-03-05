@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig } from "../../data/site";
+
+const title = "Contacto | Cotizar reparacion de techos para empresas";
+const description =
+  "Solicita evaluacion tecnica para reparacion de techos, goteras, impermeabilizacion o cambio de techos en Chile.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero-shell">
+    <div class="wrap hero-box">
+      <span class="kicker">Contacto tecnico</span>
+      <h1>Cotiza reparacion de techos para tu empresa</h1>
+      <p>
+        Envia datos de inmueble, ubicacion y urgencia. Responderemos con alcance preliminar y
+        coordinacion de visita tecnica.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap contact-grid">
+      <article class="panel card">
+        <h2>Canales directos</h2>
+        <p>Telefono: <a href={`tel:${siteConfig.phoneRaw}`}>{siteConfig.phoneDisplay}</a></p>
+        <p>Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
+        <p>Direccion base: {siteConfig.address}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">
+            Escribir por WhatsApp
+          </a>
+        </div>
+      </article>
+      <article class="panel card">
+        <h2>Formulario de solicitud</h2>
+        <form action={`mailto:${siteConfig.email}`} method="post" enctype="text/plain">
+          <label>
+            Nombre y empresa
+            <input name="nombre_empresa" required />
+          </label>
+          <label>
+            Telefono
+            <input name="telefono" required />
+          </label>
+          <label>
+            Ciudad o comuna
+            <input name="zona" required />
+          </label>
+          <label>
+            Tipo de instalacion
+            <select name="tipo_instalacion" required>
+              <option value="">Selecciona</option>
+              <option>Bodega o centro logistico</option>
+              <option>Retail o sucursal</option>
+              <option>Colegio o institucion</option>
+              <option>Planta o nave industrial</option>
+              <option>Otro</option>
+            </select>
+          </label>
+          <label>
+            Necesidad principal
+            <select name="servicio" required>
+              <option value="">Selecciona</option>
+              <option>Reparacion de techos</option>
+              <option>Goteras y filtraciones</option>
+              <option>Impermeabilizacion</option>
+              <option>Cambio de techumbre</option>
+              <option>Plan de mantencion anual</option>
+            </select>
+          </label>
+          <label>
+            Detalle del requerimiento
+            <textarea name="detalle" rows="5" required></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+        </form>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.2fr;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card a {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  form {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  label {
+    display: grid;
+    gap: 0.32rem;
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  input,
+  select,
+  textarea {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.62rem 0.68rem;
+    font: inherit;
+    color: var(--ink);
+    background: #fff;
+  }
+
+  @media (max-width: 980px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

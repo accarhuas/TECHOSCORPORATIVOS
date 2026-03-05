@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = "Planes de mantencion anual de techumbres | Techos Corporativos";
+const description =
+  "Planes de mantencion anual para techumbres de empresas, bodegas, colegios y sucursales en Chile. Control preventivo con reportes tecnicos.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="hero-shell">
+    <div class="wrap hero-box">
+      <span class="kicker">Modelo recurrente</span>
+      <h1>Programas de mantencion anual para techumbres empresariales</h1>
+      <p>
+        Planificamos inspecciones, acciones preventivas y reparaciones menores para reducir
+        urgencias y estabilizar costos en infraestructura operativa.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/contacto/">Solicitar plan anual</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-3 cards">
+      <article class="panel card">
+        <h2>Plan Preventivo</h2>
+        <p>2 visitas al ano. Recomendado para instalaciones de riesgo medio.</p>
+        <ul class="clean">
+          <li>Inspeccion semestral</li>
+          <li>Limpieza de puntos criticos</li>
+          <li>Informe tecnico de estado</li>
+        </ul>
+      </article>
+      <article class="panel card">
+        <h2>Plan Operacional</h2>
+        <p>4 visitas al ano para sedes con operacion continua.</p>
+        <ul class="clean">
+          <li>Revision trimestral</li>
+          <li>Mantencion de sellos y fijaciones</li>
+          <li>Priorizacion de mejoras</li>
+        </ul>
+      </article>
+      <article class="panel card">
+        <h2>Plan Critico</h2>
+        <p>6 a 12 visitas para infraestructura sensible.</p>
+        <ul class="clean">
+          <li>Monitoreo mensual o bimensual</li>
+          <li>Respuesta prioritaria</li>
+          <li>Reporteria consolidada por sede</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap panel card">
+      <h2>Que incluye cada plan</h2>
+      <div class="grid-2">
+        <ul class="clean">
+          <li>Inspeccion calendarizada por temporada</li>
+          <li>Deteccion temprana de filtraciones</li>
+          <li>Revision de canaletas y bajadas</li>
+          <li>Ajuste de sellos y fijaciones</li>
+        </ul>
+        <ul class="clean">
+          <li>Registro fotografico de hallazgos</li>
+          <li>Reporte tecnico para auditoria interna</li>
+          <li>Presupuesto anual priorizado</li>
+          <li>Seguimiento por criticidad operacional</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .card {
+    padding: 1rem;
+  }
+</style>

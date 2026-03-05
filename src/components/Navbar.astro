@@ -1,0 +1,134 @@
+---
+import { navLinks, siteConfig } from "../data/site";
+
+const normalizePath = (path: string) => (path === "/" ? "/" : path.replace(/\/+$/, ""));
+const currentPath = normalizePath(Astro.url.pathname);
+---
+
+<header class="site-header">
+  <div class="wrap nav-shell">
+    <a class="brand" href="/">
+      <span class="brand-mark">TC</span>
+      <span>
+        <strong>{siteConfig.name}</strong>
+        <small>Reparacion de techos B2B</small>
+      </span>
+    </a>
+    <nav aria-label="Principal">
+      <ul class="nav-list">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                class={currentPath === normalizePath(link.href) || currentPath.startsWith(`${normalizePath(link.href)}/`) ? "active" : ""}
+                href={link.href}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <a class="btn btn-primary nav-cta" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">
+      Cotizar ahora
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    backdrop-filter: blur(10px);
+    background: rgba(241, 245, 248, 0.9);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-shell {
+    min-height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .brand strong {
+    display: block;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .brand small {
+    display: block;
+    color: var(--ink-soft);
+    font-size: 0.76rem;
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.12rem;
+    background: linear-gradient(135deg, var(--brand-2), var(--brand));
+    box-shadow: 0 10px 24px rgba(14, 35, 54, 0.25);
+  }
+
+  .nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-list a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 0.45rem 0.62rem;
+    display: inline-flex;
+  }
+
+  .nav-list a:hover,
+  .nav-list a.active {
+    color: var(--brand-2);
+    background: #e8f0f6;
+  }
+
+  .nav-cta {
+    font-size: 0.9rem;
+    padding: 0.64rem 0.84rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1120px) {
+    .nav-shell {
+      flex-wrap: wrap;
+      padding: 0.65rem 0;
+      justify-content: center;
+    }
+
+    .brand {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
