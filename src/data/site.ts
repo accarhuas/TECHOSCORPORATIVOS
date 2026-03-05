@@ -18,7 +18,7 @@ export const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/servicios/", label: "Servicios" },
   { href: "/precios/", label: "Precios" },
-  { href: "/planes-mantencion/", label: "Planes Anuales" },
+  { href: "/planes-mantencion/", label: "Planes de Mantencion" },
   { href: "/sectores/", label: "Sectores" },
   { href: "/cobertura/", label: "Cobertura" },
   { href: "/nosotros/", label: "Nosotros" },
@@ -128,9 +128,9 @@ export const coveragePages: CoveragePage[] = [
           "Si. Coordinamos ventanas de trabajo para reducir impacto en operaciones de despacho."
       },
       {
-        question: "Incluyen mantencion anual para sedes en Quilicura?",
+        question: "Incluyen planes de mantencion para sedes en Quilicura?",
         answer:
-          "Si. Disenamos planes trimestrales o semestrales con informe tecnico y seguimiento."
+          "Si. Disenamos planes trimestrales, semestrales o anuales con informe tecnico y seguimiento."
       }
     ]
   },
@@ -267,7 +267,7 @@ export const coveragePages: CoveragePage[] = [
     name: "Maipu",
     title: "Reparacion de techos en Maipu | Techos Corporativos",
     description:
-      "Reparacion de techos en Maipu para empresas, comercio y centros de servicio. Soluciones en goteras, filtraciones y mantencion anual.",
+      "Reparacion de techos en Maipu para empresas, comercio y centros de servicio. Soluciones en goteras, filtraciones y mantencion programada.",
     responseWindow: "24 a 72 horas segun ubicacion de la sede",
     intro:
       "En Maipu atendemos instalaciones comerciales, educacionales y operativas con enfoque en reparacion programada y prevencion.",
@@ -288,9 +288,9 @@ export const coveragePages: CoveragePage[] = [
           "Si. Ajustamos la planificacion para intervenir con minima afectacion al flujo de clientes."
       },
       {
-        question: "Ofrecen contrato de mantencion anual en Maipu?",
+        question: "Ofrecen contrato de mantencion en Maipu?",
         answer:
-          "Si. Incluye inspecciones, ajustes preventivos e informe tecnico por visita."
+          "Si. Incluye inspecciones, ajustes preventivos e informe tecnico por visita con periodicidad flexible."
       }
     ]
   },
@@ -384,9 +384,9 @@ export const coveragePages: CoveragePage[] = [
           "Si. Identificamos causa raiz y proponemos solucion por prioridad de riesgo."
       },
       {
-        question: "Pueden incluir plan anual de mantencion?",
+        question: "Pueden incluir plan de mantencion programada?",
         answer:
-          "Si. Se puede contratar seguimiento trimestral o semestral segun necesidad."
+          "Si. Se puede contratar seguimiento mensual, trimestral, semestral o anual segun necesidad."
       }
     ]
   },
