@@ -241,9 +241,9 @@ const currentPath = normalizePath(Astro.url.pathname);
     border: 0;
     margin: 0;
     padding: 0;
-    background: rgba(13, 26, 41, 0.22);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgba(10, 20, 32, 0.38);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
     position: fixed;
     inset: 0;
     z-index: 39;
@@ -257,6 +257,16 @@ const currentPath = normalizePath(Astro.url.pathname);
     overflow: hidden;
     touch-action: none;
     overscroll-behavior: none;
+  }
+
+  :global(body main),
+  :global(body footer) {
+    transition: filter 180ms ease;
+  }
+
+  :global(body.nav-locked main),
+  :global(body.nav-locked footer) {
+    filter: blur(3px);
   }
 
   @media (max-width: 900px) {

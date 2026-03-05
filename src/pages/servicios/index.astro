@@ -5,6 +5,29 @@ import { serviceLinks } from "../../data/site";
 const title = "Servicios de reparacion de techos | Techos Corporativos";
 const description =
   "Servicios B2B de reparacion de techos: filtraciones, goteras, impermeabilizacion, cambio de techos y mantencion programada en Chile.";
+
+const additionalServices = [
+  {
+    href: "/servicios/limpieza-reparacion-canaletas/",
+    title: "Limpieza y reparacion de canaletas",
+    summary: "Control de escurrimiento, limpieza preventiva y reparacion de bajadas."
+  },
+  {
+    href: "/servicios/mantencion-techumbres-empresas/",
+    title: "Mantencion programada de techumbres",
+    summary: "Planes mensuales, trimestrales, semestrales o anuales segun criticidad."
+  },
+  {
+    href: "/servicios/inspeccion-tecnica-techos/",
+    title: "Inspeccion tecnica de techos",
+    summary: "Diagnostico tecnico con informe, riesgos y ruta de intervencion priorizada."
+  },
+  {
+    href: "/servicios/sellado-juntas-cumbreras/",
+    title: "Sellado de juntas y cumbreras",
+    summary: "Refuerzo de estanqueidad en uniones criticas de techumbres metalicas."
+  }
+];
 ---
 
 <BaseLayout title={title} description={description}>
@@ -33,6 +56,23 @@ const description =
           </article>
         ))
       }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Servicios complementarios</h2>
+      <div class="grid-2 cards">
+        {
+          additionalServices.map((item) => (
+            <article class="panel card">
+              <h3>{item.title}</h3>
+              <p>{item.summary}</p>
+              <a href={item.href}>Ver subpagina</a>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </section>
 
