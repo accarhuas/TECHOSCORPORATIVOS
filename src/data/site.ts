@@ -17,6 +17,7 @@ export const siteConfig = {
 export const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/servicios/", label: "Servicios" },
+  { href: "/precios/", label: "Precios" },
   { href: "/planes-mantencion/", label: "Planes Anuales" },
   { href: "/sectores/", label: "Sectores" },
   { href: "/cobertura/", label: "Cobertura" },

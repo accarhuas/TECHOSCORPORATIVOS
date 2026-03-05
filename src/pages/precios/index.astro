@@ -1,0 +1,223 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteConfig } from "../../data/site";
+
+const title = "Precios de reparacion y cambio de techos | Techos Corporativos";
+const description =
+  "Valores referenciales para reparacion de techos, filtraciones, impermeabilizacion y cambio de techumbres para empresas en Chile.";
+
+const pricingSchema = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: "Precios referenciales de servicios de techos",
+  itemListElement: [
+    {
+      "@type": "Offer",
+      name: "Reparacion de goteras y filtraciones",
+      priceCurrency: "CLP",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        minPrice: 180000,
+        maxPrice: 650000
+      }
+    },
+    {
+      "@type": "Offer",
+      name: "Impermeabilizacion de techos industriales",
+      priceCurrency: "CLP",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        minPrice: 4500,
+        maxPrice: 12500,
+        unitText: "m2"
+      }
+    },
+    {
+      "@type": "Offer",
+      name: "Cambio de techos industriales",
+      priceCurrency: "CLP",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        minPrice: 18000,
+        maxPrice: 48000,
+        unitText: "m2"
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(pricingSchema)} />
+
+  <section class="hero-shell">
+    <div class="wrap hero-box">
+      <span class="kicker">Transparencia comercial</span>
+      <h1>Precios de reparacion y cambio de techos para empresas</h1>
+      <p>
+        Estos valores son referenciales para Chile y te ayudan a estimar presupuesto inicial.
+        El precio final se confirma tras evaluacion tecnica en terreno.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/contacto/">Solicitar cotizacion exacta</a>
+        <a class="btn btn-secondary" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">
+          Hablar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Rangos de precios referenciales (CLP)</h2>
+      <p>
+        Valores de referencia para instalaciones empresariales. Se calculan por tipo de falla,
+        metraje, altura de trabajo y condiciones de acceso.
+      </p>
+      <div class="panel table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Servicio</th>
+              <th>Rango referencial</th>
+              <th>Unidad</th>
+              <th>Observaciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Reparacion de goteras y filtraciones</td>
+              <td>$180.000 - $650.000</td>
+              <td>Por evento</td>
+              <td>Incluye diagnostico y reparacion puntual segun criticidad.</td>
+            </tr>
+            <tr>
+              <td>Reparacion de techos industriales</td>
+              <td>$6.500 - $18.000</td>
+              <td>m2</td>
+              <td>Depende de estado de uniones, fijaciones y sellos.</td>
+            </tr>
+            <tr>
+              <td>Impermeabilizacion de techos</td>
+              <td>$4.500 - $12.500</td>
+              <td>m2</td>
+              <td>Varia por sistema aplicado y preparacion de superficie.</td>
+            </tr>
+            <tr>
+              <td>Cambio de techos / techumbres</td>
+              <td>$18.000 - $48.000</td>
+              <td>m2</td>
+              <td>Reemplazo parcial o total, incluye desmontaje y montaje.</td>
+            </tr>
+            <tr>
+              <td>Mantencion anual de techumbres</td>
+              <td>$850.000 - $3.800.000</td>
+              <td>Plan anual</td>
+              <td>Rango segun numero de visitas, sedes y metraje.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-2">
+      <article class="panel card">
+        <h2>Que impacta el precio final</h2>
+        <ul class="clean">
+          <li>Metraje total y complejidad de la cubierta</li>
+          <li>Altura de trabajo y exigencias de seguridad</li>
+          <li>Estado real de techumbre, canaletas y fijaciones</li>
+          <li>Horario de intervencion (operacion activa o ventana especial)</li>
+          <li>Numero de sedes o etapas de ejecucion</li>
+        </ul>
+      </article>
+      <article class="panel card">
+        <h2>Como obtener una cotizacion exacta</h2>
+        <ol>
+          <li>Envianos comuna, tipo de inmueble y urgencia.</li>
+          <li>Agendamos visita tecnica para levantamiento.</li>
+          <li>Recibes propuesta con alcance, plazos y costo detallado.</li>
+          <li>Si aplica, incluimos plan anual preventivo.</li>
+        </ol>
+        <a class="btn btn-primary" href="/contacto/">Pedir cotizacion tecnica</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Preguntas frecuentes sobre precios</h2>
+      <div class="grid-3 cards">
+        <article class="panel card">
+          <h3>El presupuesto tiene costo?</h3>
+          <p>
+            En la mayoria de proyectos la cotizacion inicial es sin costo. Casos de alta complejidad
+            pueden requerir visita tecnica pagada y luego se descuenta en la obra.
+          </p>
+        </article>
+        <article class="panel card">
+          <h3>Pueden cotizar varias sucursales?</h3>
+          <p>
+            Si. Entregamos propuesta consolidada para casa matriz con priorizacion por criticidad
+            y presupuesto anual.
+          </p>
+        </article>
+        <article class="panel card">
+          <h3>Que incluye la propuesta economica?</h3>
+          <p>
+            Alcance tecnico, materiales, mano de obra, tiempos de ejecucion y condiciones de
+            garantia segun servicio.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .table-wrap {
+    overflow-x: auto;
+    padding: 0.2rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.72rem 0.75rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  th {
+    background: #edf5fa;
+    color: var(--brand-2);
+    font-family: "Barlow Condensed", sans-serif;
+    letter-spacing: 0.01em;
+    font-size: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  ol {
+    margin: 0 0 1rem;
+    padding-left: 1.2rem;
+    color: var(--ink-soft);
+  }
+
+  li {
+    margin-bottom: 0.45rem;
+  }
+</style>
