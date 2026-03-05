@@ -43,6 +43,7 @@ const currentPath = normalizePath(Astro.url.pathname);
       Cotizar ahora
     </a>
   </div>
+  <button class="nav-overlay" type="button" aria-label="Cerrar menu" tabindex="-1"></button>
 </header>
 
 <script is:inline>
@@ -52,11 +53,15 @@ const currentPath = normalizePath(Astro.url.pathname);
 
     const toggle = header.querySelector(".menu-toggle");
     const nav = header.querySelector("#primary-nav");
-    if (!toggle || !nav) return;
+    const overlay = header.querySelector(".nav-overlay");
+    if (!toggle || !nav || !overlay) return;
 
     const setOpen = (open) => {
       nav.dataset.open = open ? "true" : "false";
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      header.dataset.open = open ? "true" : "false";
+      document.documentElement.classList.toggle("nav-locked", open);
+      document.body.classList.toggle("nav-locked", open);
     };
 
     toggle.addEventListener("click", () => {
@@ -66,6 +71,14 @@ const currentPath = normalizePath(Astro.url.pathname);
 
     nav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => setOpen(false));
+    });
+
+    overlay.addEventListener("click", () => setOpen(false));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
     });
 
     window.addEventListener("resize", () => {
@@ -87,6 +100,8 @@ const currentPath = normalizePath(Astro.url.pathname);
   }
 
   .nav-shell {
+    position: relative;
+    z-index: 41;
     min-height: 74px;
     display: flex;
     align-items: center;
@@ -210,6 +225,29 @@ const currentPath = normalizePath(Astro.url.pathname);
     top: 5px;
   }
 
+  .nav-overlay {
+    display: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: rgba(13, 26, 41, 0.22);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    position: fixed;
+    inset: 0;
+    z-index: 39;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+  }
+
+  :global(html.nav-locked),
+  :global(body.nav-locked) {
+    overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: none;
+  }
+
   @media (max-width: 900px) {
     .nav-shell {
       position: relative;
@@ -239,7 +277,7 @@ const currentPath = normalizePath(Astro.url.pathname);
       top: calc(100% + 6px);
       left: 0;
       right: 0;
-      z-index: 30;
+      z-index: 42;
       background: #fff;
       border: 1px solid var(--line);
       border-radius: 14px;
@@ -266,6 +304,26 @@ const currentPath = normalizePath(Astro.url.pathname);
       display: inline-flex;
       width: 100%;
       margin-top: 0.55rem;
+    }
+
+    .site-header[data-open="true"] .nav-overlay {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .site-header[data-open="true"] .menu-toggle-icon {
+      background: transparent;
+    }
+
+    .site-header[data-open="true"] .menu-toggle-icon::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .site-header[data-open="true"] .menu-toggle-icon::after {
+      top: 0;
+      transform: rotate(-45deg);
     }
   }
 </style>
