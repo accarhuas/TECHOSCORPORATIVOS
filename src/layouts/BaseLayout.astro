@@ -1,0 +1,183 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="theme-color" content="#0e2336" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #f1f5f8;
+    --surface: #ffffff;
+    --ink: #112031;
+    --ink-soft: #4c5d6f;
+    --brand: #005a7a;
+    --brand-2: #0e2336;
+    --accent: #ff8a00;
+    --line: #d9e2ea;
+    --radius: 18px;
+    --shadow: 0 22px 48px rgba(16, 32, 49, 0.12);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background:
+      radial-gradient(1200px 400px at 100% -20%, rgba(0, 90, 122, 0.15), transparent 70%),
+      radial-gradient(900px 300px at -10% -20%, rgba(255, 138, 0, 0.15), transparent 70%),
+      var(--bg);
+    color: var(--ink);
+    font-family: "Source Sans 3", sans-serif;
+    line-height: 1.45;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0 0 0.7rem;
+    font-family: "Barlow Condensed", sans-serif;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 6vw, 3.6rem);
+  }
+
+  h2 {
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+  }
+
+  h3 {
+    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  }
+
+  p {
+    margin: 0 0 1rem;
+    color: var(--ink-soft);
+    font-size: 1.06rem;
+  }
+
+  .wrap {
+    width: min(1120px, 92vw);
+    margin: 0 auto;
+  }
+
+  .section {
+    padding: clamp(2.6rem, 4vw, 4.6rem) 0;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .kicker {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--brand-2);
+    background: rgba(255, 138, 0, 0.18);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.75rem 1.15rem;
+    border-radius: 10px;
+    border: 0;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 180ms ease, filter 180ms ease;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--brand), #0082ac);
+    color: #fff;
+  }
+
+  .btn-secondary {
+    background: var(--surface);
+    border: 1px solid var(--brand);
+    color: var(--brand);
+  }
+
+  .grid-2,
+  .grid-3 {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  ul.clean {
+    margin: 0;
+    padding-left: 1rem;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 900px) {
+    .grid-2,
+    .grid-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

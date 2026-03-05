@@ -1,0 +1,336 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Reparacion de techos para empresas | Techumbres industriales Chile";
+const description =
+  "Reparacion de techos, filtraciones e impermeabilizacion para empresas, bodegas y colegios en Chile. Cambio de techumbres y planes de mantencion anual.";
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Techos Corporativos",
+  areaServed: "Chile",
+  serviceType: [
+    "Reparacion de techos",
+    "Cambio de techumbres industriales",
+    "Impermeabilizacion de techos",
+    "Reparacion de goteras y filtraciones",
+    "Mantencion anual de techumbres"
+  ],
+  url: Astro.site?.toString(),
+  telephone: "+56 9 0000 0000"
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+  <header class="hero section">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="kicker">Servicio B2B en Chile</span>
+        <h1>Reparacion de techos y cambio de techumbres para empresas</h1>
+        <p>
+          Resolvemos filtraciones, goteras y fallas de cubierta en bodegas, centros
+          logisticos, colegios y sucursales. Disenamos programas de mantencion anual para
+          continuidad operativa y control de riesgo.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#cotizar">Solicitar evaluacion tecnica</a>
+          <a class="btn btn-secondary" href="#planes">Ver plan anual</a>
+        </div>
+        <div class="trust">
+          <span>Diagnostico tecnico</span>
+          <span>Ejecucion por sectores</span>
+          <span>Reporte con evidencias</span>
+        </div>
+      </div>
+      <aside class="hero-card panel">
+        <h2>Servicios clave</h2>
+        <ul class="clean">
+          <li>Reparacion de techos industriales</li>
+          <li>Sellado de filtraciones y goteras</li>
+          <li>Impermeabilizacion de techos</li>
+          <li>Cambio de techumbres metalicas</li>
+          <li>Limpieza y reparacion de canaletas</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap">
+        <span class="kicker">Solucion tecnica</span>
+        <h2>Especialistas en reparacion de techos industriales</h2>
+        <p>
+          La reparacion de techos evita danos de infraestructura y perdidas por detenciones
+          operativas. Trabajamos cubiertas metalicas e industriales con inspeccion, reparacion e
+          impermeabilizacion para extender su vida util.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <h2>Servicios de reparacion y cambio de techumbres</h2>
+        <div class="grid-2 cards">
+          <article class="panel card">
+            <h3>Reparacion de techos industriales</h3>
+            <p>Correccion de uniones, fijaciones, sellos y puntos de filtracion recurrente.</p>
+          </article>
+          <article class="panel card">
+            <h3>Reparacion de techumbre metalica</h3>
+            <p>Trabajo tecnico en cumbreras, traslapos, canaletas y encuentros con muros.</p>
+          </article>
+          <article class="panel card">
+            <h3>Cambio de techumbres industriales</h3>
+            <p>Reemplazo parcial o total de cubiertas para mejorar estanqueidad y seguridad.</p>
+          </article>
+          <article class="panel card">
+            <h3>Sellado de filtraciones y goteras</h3>
+            <p>Diagnostico de causa raiz y solucion durable para eliminar ingreso de agua.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="planes" class="section">
+      <div class="wrap panel plans">
+        <div>
+          <span class="kicker">Ingreso recurrente</span>
+          <h2>Programas de mantencion anual de techumbres</h2>
+          <p>
+            Disenados para empresas con foco en continuidad operativa. Incluyen inspecciones
+            calendarizadas, acciones preventivas y reportes para auditoria interna.
+          </p>
+          <ul class="clean">
+            <li>Inspeccion tecnica programada</li>
+            <li>Deteccion temprana de filtraciones</li>
+            <li>Revision de canaletas y bajadas</li>
+            <li>Ajuste de fijaciones y sellos</li>
+            <li>Informe tecnico con fotos y recomendaciones</li>
+          </ul>
+        </div>
+        <div class="grid-3 plan-grid">
+          <article class="plan-card">
+            <h3>Plan Preventivo</h3>
+            <p>2 visitas al ano (verano + invierno).</p>
+          </article>
+          <article class="plan-card">
+            <h3>Plan Operacional</h3>
+            <p>4 visitas al ano para sedes en uso continuo.</p>
+          </article>
+          <article class="plan-card">
+            <h3>Plan Critico</h3>
+            <p>6 a 12 visitas al ano en instalaciones sensibles.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <h2>Mantencion anual por tipo de institucion</h2>
+        <div class="grid-3 cards">
+          <article class="panel card">
+            <h3>Bancos y edificios corporativos</h3>
+            <p>Proteccion de salas tecnicas, oficinas y zonas de atencion.</p>
+          </article>
+          <article class="panel card">
+            <h3>Supermercados y retail</h3>
+            <p>Prevencion de goteras en sala de venta, bodega y camaras de frio.</p>
+          </article>
+          <article class="panel card">
+            <h3>Instituciones educacionales</h3>
+            <p>Mantencion en calendario academico para reducir interrupciones.</p>
+          </article>
+          <article class="panel card">
+            <h3>Instituciones de salud</h3>
+            <p>Control preventivo en accesos, urgencias y zonas tecnicas.</p>
+          </article>
+          <article class="panel card">
+            <h3>Centros logisticos y bodegas</h3>
+            <p>Ejecucion por panos para mantener operacion activa.</p>
+          </article>
+          <article class="panel card">
+            <h3>Empresas con sucursales</h3>
+            <p>Planificacion por sede con estandar tecnico unificado.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap grid-2 split">
+        <article class="panel split-card">
+          <h2>Cobertura: reparacion de techos en Santiago y regiones</h2>
+          <p>
+            Atencion en Chile segun requerimiento operativo. Coordinamos visitas tecnicas,
+            ejecucion y mantenciones calendarizadas por zona.
+          </p>
+        </article>
+        <article class="panel split-card">
+          <h2>Proceso de trabajo</h2>
+          <ol>
+            <li>Inspeccion tecnica y levantamiento</li>
+            <li>Diagnostico de filtraciones y criticidad</li>
+            <li>Propuesta: reparacion, mejora o cambio de techumbre</li>
+            <li>Ejecucion por sectores cuando aplica</li>
+            <li>Entrega de informe y plan preventivo recomendado</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <div class="wrap">
+        <h2>Preguntas frecuentes</h2>
+        <div class="grid-3 cards">
+          <article class="panel card">
+            <h3>Conviene reparar o cambiar la techumbre?</h3>
+            <p>Se repara cuando la cubierta es recuperable; se cambia si hay dano extendido.</p>
+          </article>
+          <article class="panel card">
+            <h3>Que incluye la mantencion anual?</h3>
+            <p>Inspecciones, acciones preventivas y reporte tecnico con priorizacion.</p>
+          </article>
+          <article class="panel card">
+            <h3>Se puede trabajar sin detener operacion?</h3>
+            <p>Si. Se planifica por sectores y horarios segun la actividad de la sede.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section id="cotizar" class="section final-cta">
+    <div class="wrap panel cta-card">
+      <h2>Cotiza reparacion de techos o tu plan de mantencion anual</h2>
+      <p>Cuentanos tipo de inmueble, ubicacion y nivel de urgencia para coordinar visita tecnica.</p>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="https://wa.me/56900000000" target="_blank" rel="noopener noreferrer">Agendar visita tecnica</a>
+        <a class="btn btn-secondary" href="mailto:contacto@techoscorporativos.cl">Solicitar plan anual</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-top: clamp(2.4rem, 5vw, 5rem);
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: 1.2rem;
+    grid-template-columns: 1.3fr 0.9fr;
+    align-items: stretch;
+  }
+
+  .hero-copy {
+    background: linear-gradient(165deg, #0e2336 8%, #0c3e59 58%, #005a7a 100%);
+    color: #f9fdff;
+    border-radius: var(--radius);
+    padding: clamp(1.2rem, 3.2vw, 2.2rem);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-copy p {
+    color: #d3e7f1;
+    max-width: 62ch;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin: 1rem 0 0.9rem;
+  }
+
+  .trust {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .trust span {
+    font-size: 0.86rem;
+    border: 1px solid rgba(233, 242, 248, 0.35);
+    color: #e9f2f8;
+    padding: 0.28rem 0.58rem;
+    border-radius: 999px;
+  }
+
+  .hero-card {
+    padding: 1.2rem;
+  }
+
+  .hero-card ul li {
+    margin-bottom: 0.45rem;
+  }
+
+  .cards .card {
+    padding: 1rem;
+  }
+
+  .plans {
+    padding: 1.2rem;
+  }
+
+  .plan-grid {
+    margin-top: 1rem;
+  }
+
+  .plan-card {
+    border-radius: 14px;
+    background: linear-gradient(160deg, #eef6fa, #f8fcff);
+    border: 1px solid var(--line);
+    padding: 0.95rem;
+  }
+
+  .split {
+    align-items: stretch;
+  }
+
+  .split-card {
+    padding: 1rem;
+  }
+
+  .split-card ol {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--ink-soft);
+  }
+
+  .split-card li {
+    margin-bottom: 0.35rem;
+  }
+
+  .faq {
+    padding-top: 0.5rem;
+  }
+
+  .final-cta {
+    padding-top: 1.2rem;
+    padding-bottom: clamp(2.6rem, 4vw, 4.2rem);
+  }
+
+  .cta-card {
+    text-align: center;
+    padding: 1.35rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+
+  @media (max-width: 980px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
