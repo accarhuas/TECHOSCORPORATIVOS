@@ -14,7 +14,13 @@ const currentPath = normalizePath(Astro.url.pathname);
         <small>Reparacion de techos B2B</small>
       </span>
     </a>
-    <nav aria-label="Principal">
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span class="menu-toggle-icon" aria-hidden="true"></span>
+      <span>Menu</span>
+    </button>
+
+    <nav id="primary-nav" class="site-nav" data-open="false" aria-label="Principal">
       <ul class="nav-list">
         {
           navLinks.map((link) => (
@@ -29,12 +35,46 @@ const currentPath = normalizePath(Astro.url.pathname);
           ))
         }
       </ul>
+      <a class="btn btn-primary nav-cta-mobile" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">
+        Cotizar ahora
+      </a>
     </nav>
-    <a class="btn btn-primary nav-cta" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">
+    <a class="btn btn-primary nav-cta-desktop" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">
       Cotizar ahora
     </a>
   </div>
 </header>
+
+<script is:inline>
+  (() => {
+    const header = document.querySelector(".site-header");
+    if (!header) return;
+
+    const toggle = header.querySelector(".menu-toggle");
+    const nav = header.querySelector("#primary-nav");
+    if (!toggle || !nav) return;
+
+    const setOpen = (open) => {
+      nav.dataset.open = open ? "true" : "false";
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+
+    toggle.addEventListener("click", () => {
+      const isOpen = nav.dataset.open === "true";
+      setOpen(!isOpen);
+    });
+
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 900) {
+        setOpen(false);
+      }
+    });
+  })();
+</script>
 
 <style>
   .site-header {
@@ -88,6 +128,12 @@ const currentPath = normalizePath(Astro.url.pathname);
     box-shadow: 0 10px 24px rgba(14, 35, 54, 0.25);
   }
 
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
   .nav-list {
     list-style: none;
     margin: 0;
@@ -113,22 +159,113 @@ const currentPath = normalizePath(Astro.url.pathname);
     background: #e8f0f6;
   }
 
-  .nav-cta {
+  .nav-cta-desktop {
     font-size: 0.9rem;
     padding: 0.64rem 0.84rem;
     white-space: nowrap;
   }
 
-  @media (max-width: 1120px) {
+  .nav-cta-mobile {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--brand-2);
+    border-radius: 10px;
+    padding: 0.45rem 0.62rem;
+    font-weight: 700;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .menu-toggle-icon {
+    width: 18px;
+    height: 2px;
+    background: var(--brand-2);
+    border-radius: 999px;
+    position: relative;
+  }
+
+  .menu-toggle-icon::before,
+  .menu-toggle-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--brand-2);
+  }
+
+  .menu-toggle-icon::before {
+    top: -5px;
+  }
+
+  .menu-toggle-icon::after {
+    top: 5px;
+  }
+
+  @media (max-width: 900px) {
     .nav-shell {
-      flex-wrap: wrap;
-      padding: 0.65rem 0;
-      justify-content: center;
+      position: relative;
+      padding: 0.6rem 0;
     }
 
     .brand {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .brand small {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: inline-flex;
+    }
+
+    .nav-cta-desktop {
+      display: none;
+    }
+
+    .site-nav {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      z-index: 30;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 18px 36px rgba(17, 32, 49, 0.14);
+      padding: 0.7rem;
+    }
+
+    .site-nav[data-open="true"] {
+      display: block;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.25rem;
+    }
+
+    .nav-list a {
       width: 100%;
-      justify-content: center;
+      padding: 0.58rem 0.65rem;
+    }
+
+    .nav-cta-mobile {
+      display: inline-flex;
+      width: 100%;
+      margin-top: 0.55rem;
     }
   }
 </style>
