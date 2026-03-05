@@ -11,6 +11,7 @@ interface Props {
 
 const { title, description, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = new URL("/icon-512.png", Astro.site).toString();
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -30,17 +31,29 @@ const orgSchema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="application-name" content={siteConfig.name} />
+    <meta name="apple-mobile-web-app-title" content={siteConfig.name} />
     <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large"} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content={siteConfig.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="Techos Corporativos - Reparacion y cambio de techos" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <meta name="theme-color" content="#0e2336" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="alternate" hrefLang="es-CL" href={canonical} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
