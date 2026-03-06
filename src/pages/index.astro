@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
 import { sectorCards, serviceLinks, siteConfig } from "../data/site";
 
 const title = "Reparacion y cambio de techos | Techos Corporativos";
@@ -21,15 +22,75 @@ const serviceSchema = {
   url: `${siteConfig.siteUrl}/`,
   telephone: siteConfig.phoneDisplay
 };
+
+const faqItems = [
+  {
+    question: "Conviene reparar o cambiar la techumbre?",
+    answer:
+      "Depende del dano acumulado y la vida util restante. En terreno definimos si conviene reparacion sectorizada o cambio parcial/total."
+  },
+  {
+    question: "Pueden trabajar sin detener la operacion?",
+    answer:
+      "Si. Planificamos por sectores y horarios para reducir impacto en bodegas, sucursales y centros de atencion activos."
+  },
+  {
+    question: "Incluyen reportes tecnicos?",
+    answer:
+      "Si. Entregamos informe de hallazgos, acciones ejecutadas, evidencias y recomendaciones de mantencion."
+  },
+  {
+    question: "Cuanto tarda una evaluacion tecnica inicial?",
+    answer:
+      "Normalmente entre 24 y 72 horas segun comuna, criticidad y condiciones de acceso a la cubierta."
+  },
+  {
+    question: "Atienden empresas con varias sucursales?",
+    answer:
+      "Si. Centralizamos la gestion para casa matriz con estandar tecnico unico y reportes consolidados por sede."
+  },
+  {
+    question: "Que frecuencia de mantencion recomiendan?",
+    answer:
+      "Depende del riesgo operativo. Podemos programar visitas mensuales, trimestrales, semestrales o anuales."
+  },
+  {
+    question: "Trabajan en Santiago y regiones?",
+    answer:
+      "Si. Atendemos Santiago y coordinamos regiones segun alcance, prioridad del cliente y ventana operativa."
+  },
+  {
+    question: "Ofrecen garantia en reparaciones?",
+    answer:
+      "Si. La garantia depende del tipo de intervencion y materiales utilizados, y queda detallada en la propuesta tecnica."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer
+    }
+  }))
+};
+
+const serviceCardIcons = ["tool", "shield", "checklist", "wrench", "chart", "clock"];
+const sectorIcons = ["building", "chart", "shield", "checklist", "tool", "map-pin"];
 ---
 
 <BaseLayout title={title} description={description}>
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <section class="hero-shell">
     <div class="wrap hero-box">
       <span class="kicker">Especialistas B2B en Chile</span>
-      <h1>Reparacion y cambio de techos para empresas en Chile</h1>
+      <h1>Reparacion y cambio de techos para empresas</h1>
       <p>
         Ejecutamos reparacion de techos y cambio de techumbres en bodegas, centros logisticos,
         colegios y sucursales. Resolvemos filtraciones y goteras sin frenar tu operacion, con
@@ -54,8 +115,9 @@ const serviceSchema = {
       </p>
       <div class="grid-2 cards">
         {
-          serviceLinks.map((item) => (
+          serviceLinks.map((item, index) => (
             <article class="panel card">
+              <span class="icon-chip icon-chip-accent"><Icon name={serviceCardIcons[index % serviceCardIcons.length]} size={18} /></span>
               <h3>{item.title}</h3>
               <p>{item.summary}</p>
               <a href={item.href}>Ver detalle del servicio</a>
@@ -71,14 +133,17 @@ const serviceSchema = {
       <h2>Por que empresas nos eligen</h2>
       <div class="panel metrics">
         <article>
+          <span class="icon-chip icon-chip-accent"><Icon name="shield" size={18} /></span>
           <h3>{siteConfig.yearsExperience}</h3>
           <p>Anos de experiencia en techumbres empresariales.</p>
         </article>
         <article>
+          <span class="icon-chip icon-chip-accent"><Icon name="clock" size={18} /></span>
           <h3>24 a 72h</h3>
           <p>Ventana de respuesta para evaluacion inicial segun zona.</p>
         </article>
         <article>
+          <span class="icon-chip icon-chip-accent"><Icon name="chart" size={18} /></span>
           <h3>1 estandar</h3>
           <p>Metodologia unica para casa matriz y sucursales.</p>
         </article>
@@ -95,14 +160,17 @@ const serviceSchema = {
       </p>
       <div class="grid-3 cards">
         <article class="panel card">
+          <span class="icon-chip icon-chip-accent"><Icon name="checklist" size={18} /></span>
           <h3>Plan Preventivo</h3>
           <p>2 visitas al ano con foco en temporada de lluvia y cierre tecnico.</p>
         </article>
         <article class="panel card">
+          <span class="icon-chip icon-chip-accent"><Icon name="tool" size={18} /></span>
           <h3>Plan Operacional</h3>
           <p>4 visitas al ano para instalaciones con uso continuo.</p>
         </article>
         <article class="panel card">
+          <span class="icon-chip icon-chip-accent"><Icon name="shield" size={18} /></span>
           <h3>Plan Critico</h3>
           <p>6 a 12 visitas en infraestructura sensible o de alta exigencia.</p>
         </article>
@@ -116,14 +184,17 @@ const serviceSchema = {
       <h2>Proceso de trabajo para reparacion y cambio de techos</h2>
       <div class="grid-3 cards">
         <article class="panel card">
+          <span class="icon-chip icon-chip-accent"><Icon name="map-pin" size={18} /></span>
           <h3>1. Inspeccion tecnica</h3>
           <p>Levantamiento de cubierta, riesgos y puntos de filtracion por sector.</p>
         </article>
         <article class="panel card">
+          <span class="icon-chip icon-chip-accent"><Icon name="checklist" size={18} /></span>
           <h3>2. Propuesta y plan</h3>
           <p>Definimos alcance: reparacion de techos, impermeabilizacion o cambio de techumbre.</p>
         </article>
         <article class="panel card">
+          <span class="icon-chip icon-chip-accent"><Icon name="wrench" size={18} /></span>
           <h3>3. Ejecucion y cierre</h3>
           <p>Intervencion por etapas, control de calidad y entrega de informe tecnico final.</p>
         </article>
@@ -136,8 +207,9 @@ const serviceSchema = {
       <h2>Industrias y organizaciones que atendemos</h2>
       <div class="grid-3 cards">
         {
-          sectorCards.map((sector) => (
+          sectorCards.map((sector, index) => (
             <article class="panel card">
+              <span class="icon-chip icon-chip-accent"><Icon name={sectorIcons[index % sectorIcons.length]} size={18} /></span>
               <h3>{sector}</h3>
               <p>Mantencion y reparaciones programadas segun criticidad operacional.</p>
             </article>
@@ -151,7 +223,10 @@ const serviceSchema = {
   <section class="section">
     <div class="wrap grid-2">
       <article class="panel card">
-        <h2>Cobertura nacional</h2>
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="map-pin" size={18} /></span>
+          Cobertura nacional
+        </h2>
         <p>
           Operamos en Santiago y regiones segun requerimiento. Coordinamos visitas tecnicas por
           prioridad, criticidad y ventana operativa del cliente.
@@ -159,7 +234,10 @@ const serviceSchema = {
         <a href="/cobertura/">Revisar cobertura</a>
       </article>
       <article class="panel card">
-        <h2>Contacto tecnico</h2>
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="phone" size={18} /></span>
+          Contacto tecnico
+        </h2>
         <p>
           Cuentanos tipo de inmueble, ubicacion y urgencia. Te devolvemos diagnostico y alcance
           preliminar de trabajo.
@@ -172,28 +250,20 @@ const serviceSchema = {
   <section class="section">
     <div class="wrap">
       <h2>Preguntas frecuentes</h2>
-      <div class="grid-3 cards">
-        <article class="panel card">
-          <h3>Conviene reparar o cambiar la techumbre?</h3>
-          <p>
-            Depende del dano y vida util restante. Evaluamos en terreno si conviene reparacion de
-            techos o cambio parcial/total.
-          </p>
-        </article>
-        <article class="panel card">
-          <h3>Pueden trabajar sin detener la operacion?</h3>
-          <p>
-            Si. Planificamos por sectores y horarios para minimizar impacto en bodegas y
-            sucursales activas.
-          </p>
-        </article>
-        <article class="panel card">
-          <h3>Incluyen reportes tecnicos?</h3>
-          <p>
-            Si. Cada servicio incluye informe de hallazgos, intervencion ejecutada y
-            recomendaciones de mantencion.
-          </p>
-        </article>
+      <div class="panel faq-shell">
+        {
+          faqItems.map((item) => (
+            <details class="faq-item">
+              <summary>
+                <span class="summary-label">
+                  <Icon name="chat" size={16} />
+                  {item.question}
+                </span>
+              </summary>
+              <p>{item.answer}</p>
+            </details>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -203,7 +273,7 @@ const serviceSchema = {
   .hero-sub {
     margin-top: -0.35rem;
     margin-bottom: 0.9rem;
-    color: #d8e8f2;
+    color: #e5e9ee;
   }
 
   .card a {
@@ -226,17 +296,86 @@ const serviceSchema = {
   .metrics article {
     border-radius: 14px;
     border: 1px solid var(--line);
-    background: linear-gradient(170deg, #f7fbfd, #ffffff);
+    background: linear-gradient(170deg, #f2f4f7, #ffffff);
     padding: 0.8rem;
     text-align: center;
+    display: grid;
+    justify-items: center;
+    gap: 0.2rem;
   }
 
   .metrics h3 {
     color: var(--brand-2);
   }
 
+  .faq-shell {
+    padding: 0.45rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+
+  .faq-item {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    color: var(--brand-2);
+    padding: 0.82rem 2.35rem 0.82rem 0.68rem;
+    position: relative;
+  }
+
+  .summary-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    display: grid;
+    place-items: center;
+    font-size: 1rem;
+    color: var(--brand);
+    background: #f2f4f6;
+  }
+
+  .faq-item[open] summary::after {
+    content: "-";
+  }
+
+  .faq-item p {
+    margin: 0;
+    padding: 0 0.7rem 0.85rem;
+  }
+
   @media (max-width: 900px) {
     .metrics {
+      grid-template-columns: 1fr;
+    }
+
+    .faq-shell {
       grid-template-columns: 1fr;
     }
   }

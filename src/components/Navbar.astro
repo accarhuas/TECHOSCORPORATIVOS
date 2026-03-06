@@ -1,5 +1,5 @@
 ---
-import { navLinks, siteConfig } from "../data/site";
+import { navLinks, planSubmenuLinks, sectorSubmenuLinks, serviceSubmenuLinks, siteConfig } from "../data/site";
 
 const normalizePath = (path: string) => (path === "/" ? "/" : path.replace(/\/+$/, ""));
 const currentPath = normalizePath(Astro.url.pathname);
@@ -23,25 +23,63 @@ const currentPath = normalizePath(Astro.url.pathname);
     <nav id="primary-nav" class="site-nav" data-open="false" aria-label="Principal">
       <ul class="nav-list">
         {
-          navLinks.map((link) => (
-            <li>
-              <a
-                class={currentPath === normalizePath(link.href) || currentPath.startsWith(`${normalizePath(link.href)}/`) ? "active" : ""}
-                href={link.href}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))
+          navLinks.map((link) => {
+            const normalizedHref = normalizePath(link.href);
+            const linkIsActive = currentPath === normalizedHref || currentPath.startsWith(`${normalizedHref}/`);
+            const submenuConfig =
+              normalizedHref === "/servicios"
+                ? { items: serviceSubmenuLinks, ariaLabel: "Subpaginas de servicios" }
+                : normalizedHref === "/planes-mantencion"
+                  ? { items: planSubmenuLinks, ariaLabel: "Tipos de plan de mantencion" }
+                : normalizedHref === "/sectores"
+                  ? { items: sectorSubmenuLinks, ariaLabel: "Subsectores atendidos" }
+                  : null;
+            const hasSubmenu = Boolean(submenuConfig);
+
+            return (
+              <li class={`nav-item${hasSubmenu ? " has-submenu" : ""}`}>
+                <a class={linkIsActive ? "active" : ""} href={link.href}>
+                  {link.label}
+                  {hasSubmenu && <span class="nav-caret" aria-hidden="true">v</span>}
+                </a>
+                {
+                  submenuConfig && (
+                    <ul
+                      class={`submenu-list${submenuConfig.items.length > 4 ? " submenu-two-col" : ""}`}
+                      aria-label={submenuConfig.ariaLabel}
+                    >
+                      {
+                        submenuConfig.items.map((item) => {
+                          const targetPath = normalizePath(item.href.split("#")[0]);
+                          const itemIsHashLink = item.href.includes("#");
+                          const itemIsActive = !itemIsHashLink && currentPath === targetPath;
+                          return (
+                            <li>
+                              <a class={itemIsActive ? "active" : ""} href={item.href}>{item.label}</a>
+                            </li>
+                          );
+                        })
+                      }
+                    </ul>
+                  )
+                }
+              </li>
+            );
+          })
         }
       </ul>
       <a class="btn btn-primary nav-cta-mobile" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">
         Cotizar ahora
       </a>
     </nav>
-    <a class="btn btn-primary nav-cta-desktop" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">
-      Cotizar ahora
-    </a>
+    <div class="nav-actions-desktop">
+      <a class="btn btn-secondary nav-price-desktop" href="/precios/">
+        Precios
+      </a>
+      <a class="btn btn-primary nav-cta-desktop" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">
+        Cotizar ahora
+      </a>
+    </div>
   </div>
   <button class="nav-overlay" type="button" aria-label="Cerrar menu" tabindex="-1"></button>
 </header>
@@ -95,7 +133,7 @@ const currentPath = normalizePath(Astro.url.pathname);
     top: 0;
     z-index: 40;
     backdrop-filter: blur(10px);
-    background: rgba(241, 245, 248, 0.9);
+    background: rgba(243, 245, 247, 0.92);
     border-bottom: 1px solid var(--line);
   }
 
@@ -141,7 +179,7 @@ const currentPath = normalizePath(Astro.url.pathname);
     font-family: "Barlow Condensed", sans-serif;
     font-size: 1.12rem;
     background: linear-gradient(135deg, var(--brand-2), var(--brand));
-    box-shadow: 0 10px 24px rgba(14, 35, 54, 0.25);
+    box-shadow: 0 10px 24px rgba(17, 19, 23, 0.28);
   }
 
   .site-nav {
@@ -160,22 +198,102 @@ const currentPath = normalizePath(Astro.url.pathname);
     justify-content: center;
   }
 
-  .nav-list a {
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-list > li > a {
     text-decoration: none;
     color: var(--ink-soft);
     font-weight: 700;
     border-radius: 8px;
     padding: 0.45rem 0.62rem;
     display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
   }
 
-  .nav-list a:hover,
-  .nav-list a.active {
+  .nav-list > li > a:hover,
+  .nav-list > li > a.active {
     color: var(--brand-2);
-    background: #e8f0f6;
+    background: #e6eaef;
+  }
+
+  .nav-caret {
+    font-size: 0.72rem;
+    line-height: 1;
+    color: #6b7280;
+  }
+
+  .submenu-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0.45rem;
+    min-width: 300px;
+    max-width: min(420px, calc(100vw - 2rem));
+    max-height: none;
+    overflow: visible;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: #fff;
+    box-shadow: 0 18px 36px rgba(17, 19, 23, 0.18);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.22rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: none;
+    transition: opacity 140ms ease, visibility 140ms ease;
+    z-index: 46;
+  }
+
+  .submenu-list.submenu-two-col {
+    min-width: 520px;
+    max-width: min(620px, calc(100vw - 2rem));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .submenu-list a {
+    display: block;
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-weight: 600;
+    line-height: 1.2;
+    border-radius: 8px;
+    padding: 0.5rem 0.56rem;
+  }
+
+  .submenu-list a:hover,
+  .submenu-list a.active {
+    color: var(--brand-2);
+    background: #f1f4f7;
+  }
+
+  .nav-item.has-submenu:hover > .submenu-list,
+  .nav-item.has-submenu:focus-within > .submenu-list {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
   }
 
   .nav-cta-desktop {
+    font-size: 0.9rem;
+    padding: 0.64rem 0.84rem;
+    white-space: nowrap;
+  }
+
+  .nav-actions-desktop {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .nav-price-desktop {
     font-size: 0.9rem;
     padding: 0.64rem 0.84rem;
     white-space: nowrap;
@@ -241,7 +359,7 @@ const currentPath = normalizePath(Astro.url.pathname);
     border: 0;
     margin: 0;
     padding: 0;
-    background: rgba(10, 20, 32, 0.38);
+    background: rgba(15, 18, 23, 0.44);
     backdrop-filter: blur(10px) saturate(120%);
     -webkit-backdrop-filter: blur(10px) saturate(120%);
     position: fixed;
@@ -279,7 +397,7 @@ const currentPath = normalizePath(Astro.url.pathname);
     .nav-shell {
       position: relative;
       padding: 0.6rem 0.9rem;
-      background: #f7fbfd;
+      background: #f3f5f7;
       border: 1px solid transparent;
       border-left: 0;
       border-right: 0;
@@ -303,6 +421,10 @@ const currentPath = normalizePath(Astro.url.pathname);
       display: none;
     }
 
+    .nav-actions-desktop {
+      display: none;
+    }
+
     .site-nav {
       display: none;
       position: absolute;
@@ -316,7 +438,7 @@ const currentPath = normalizePath(Astro.url.pathname);
       border-left: 0;
       border-right: 0;
       border-radius: 0;
-      box-shadow: 0 18px 36px rgba(17, 32, 49, 0.14);
+      box-shadow: 0 18px 36px rgba(17, 19, 23, 0.14);
       padding: 0.7rem;
     }
 
@@ -330,9 +452,42 @@ const currentPath = normalizePath(Astro.url.pathname);
       gap: 0.25rem;
     }
 
-    .nav-list a {
+    .nav-list > li > a {
       width: 100%;
       padding: 0.58rem 0.65rem;
+    }
+
+    .submenu-list {
+      position: static;
+      min-width: 0;
+      max-width: none;
+      max-height: none;
+      grid-template-columns: 1fr;
+      margin-top: 0.2rem;
+      padding: 0.35rem;
+      border-radius: 10px;
+      border: 1px solid #d9dfe6;
+      box-shadow: none;
+      background: #f3f5f7;
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: none;
+      transition: none;
+    }
+
+    .submenu-list a {
+      padding: 0.46rem 0.55rem;
+      font-size: 0.93rem;
+    }
+
+    .nav-item.has-submenu:hover > .submenu-list,
+    .nav-item.has-submenu:focus-within > .submenu-list {
+      display: grid;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
     }
 
     .nav-cta-mobile {
@@ -357,7 +512,7 @@ const currentPath = normalizePath(Astro.url.pathname);
       border-left: 0;
       border-right: 0;
       border-radius: 0;
-      box-shadow: 0 12px 30px rgba(17, 32, 49, 0.18);
+      box-shadow: 0 12px 30px rgba(17, 19, 23, 0.22);
     }
 
     .site-header[data-open="true"] .menu-toggle-icon::before {

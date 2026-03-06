@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
 import { siteConfig } from "../../data/site";
 
 const title = "Contacto | Cotizar reparacion de techos para empresas";
@@ -22,10 +23,15 @@ const description =
   <section class="section">
     <div class="wrap contact-grid">
       <article class="panel card">
-        <h2>Canales directos</h2>
-        <p>Telefono: <a href={`tel:${siteConfig.phoneRaw}`}>{siteConfig.phoneDisplay}</a></p>
-        <p>Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
-        <p>Direccion base: {siteConfig.address}</p>
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="phone" size={18} /></span>
+          Canales directos
+        </h2>
+        <ul class="list-icon contact-points">
+          <li><Icon name="phone" class="bullet-icon" size={16} /><span>Telefono: <a href={`tel:${siteConfig.phoneRaw}`}>{siteConfig.phoneDisplay}</a></span></li>
+          <li><Icon name="mail" class="bullet-icon" size={16} /><span>Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></span></li>
+          <li><Icon name="map-pin" class="bullet-icon" size={16} /><span>Direccion base: {siteConfig.address}</span></li>
+        </ul>
         <div class="hero-actions">
           <a class="btn btn-primary" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">
             Escribir por WhatsApp
@@ -33,7 +39,10 @@ const description =
         </div>
       </article>
       <article class="panel card">
-        <h2>Formulario de solicitud</h2>
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="chat" size={18} /></span>
+          Formulario de solicitud
+        </h2>
         <form action={`mailto:${siteConfig.email}`} method="post" enctype="text/plain">
           <label>
             Nombre y empresa
@@ -95,6 +104,10 @@ const description =
     color: var(--brand);
     text-decoration: none;
     font-weight: 700;
+  }
+
+  .contact-points {
+    margin-bottom: 1rem;
   }
 
   form {

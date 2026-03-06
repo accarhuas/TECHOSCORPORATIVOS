@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
 import { serviceLinks } from "../../data/site";
 
 const title = "Servicios de reparacion de techos | Techos Corporativos";
@@ -7,6 +8,26 @@ const description =
   "Servicios B2B de reparacion de techos: filtraciones, goteras, impermeabilizacion, cambio de techos y mantencion programada en Chile.";
 
 const additionalServices = [
+  {
+    href: "/servicios/cambio-cubiertas-techos/",
+    title: "Cambio de cubiertas y techos",
+    summary: "Reemplazo parcial o total de cubiertas empresariales segun estado y criticidad."
+  },
+  {
+    href: "/servicios/reparacion-por-tipo-de-cubierta/",
+    title: "Reparacion por tipo de cubierta",
+    summary: "Soluciones para cubierta metalica, policarbonato, teja asfaltica y sistemas mixtos."
+  },
+  {
+    href: "/servicios/reparacion-cubiertas-naves-industriales/",
+    title: "Reparacion de cubiertas de naves industriales",
+    summary: "Intervencion por panos para instalaciones de gran metraje y operacion continua."
+  },
+  {
+    href: "/servicios/cotizacion-reparacion-techos/",
+    title: "Cotizacion de reparacion de techos",
+    summary: "Propuesta tecnica y economica con alcance, plazos y ruta de intervencion."
+  },
   {
     href: "/servicios/limpieza-reparacion-canaletas/",
     title: "Limpieza y reparacion de canaletas",
@@ -46,10 +67,11 @@ const additionalServices = [
   </section>
 
   <section class="section">
-    <div class="wrap grid-2 cards">
+      <div class="wrap grid-2 cards">
       {
-        serviceLinks.map((item) => (
+        serviceLinks.map((item, index) => (
           <article class="panel card">
+            <span class="icon-chip icon-chip-accent"><Icon name={["tool", "shield", "checklist", "wrench", "chart", "clock"][index % 6]} size={18} /></span>
             <h2>{item.title}</h2>
             <p>{item.summary}</p>
             <a href={item.href}>Ver subpagina</a>
@@ -61,11 +83,12 @@ const additionalServices = [
 
   <section class="section">
     <div class="wrap">
-      <h2>Servicios complementarios</h2>
+      <h2>Servicios complementarios y especializados</h2>
       <div class="grid-2 cards">
         {
-          additionalServices.map((item) => (
+          additionalServices.map((item, index) => (
             <article class="panel card">
+              <span class="icon-chip"><Icon name={["building", "checklist", "wrench", "chat", "tool", "clock", "chart", "shield"][index % 8]} size={18} /></span>
               <h3>{item.title}</h3>
               <p>{item.summary}</p>
               <a href={item.href}>Ver subpagina</a>
@@ -78,13 +101,16 @@ const additionalServices = [
 
   <section class="section">
     <div class="wrap panel process">
-      <h2>Como trabajamos</h2>
-      <ol>
-        <li>Inspeccion tecnica y levantamiento de riesgo.</li>
-        <li>Diagnostico con propuesta de reparacion o reemplazo.</li>
-        <li>Ejecucion con plan de seguridad y continuidad operativa.</li>
-        <li>Entrega de informe tecnico con recomendaciones.</li>
-      </ol>
+      <h2 class="title-with-icon">
+        <span class="icon-chip"><Icon name="checklist" size={18} /></span>
+        Como trabajamos
+      </h2>
+      <ul class="list-icon">
+        <li><Icon name="map-pin" class="bullet-icon" size={16} /><span>Inspeccion tecnica y levantamiento de riesgo.</span></li>
+        <li><Icon name="tool" class="bullet-icon" size={16} /><span>Diagnostico con propuesta de reparacion o reemplazo.</span></li>
+        <li><Icon name="shield" class="bullet-icon" size={16} /><span>Ejecucion con plan de seguridad y continuidad operativa.</span></li>
+        <li><Icon name="chart" class="bullet-icon" size={16} /><span>Entrega de informe tecnico con recomendaciones.</span></li>
+      </ul>
     </div>
   </section>
 </BaseLayout>
@@ -102,11 +128,5 @@ const additionalServices = [
 
   .process {
     padding: 1rem;
-  }
-
-  .process ol {
-    margin: 0;
-    padding-left: 1.2rem;
-    color: var(--ink-soft);
   }
 </style>

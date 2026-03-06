@@ -17,6 +17,17 @@ export const siteConfig = {
 export const navLinks = [
   { href: "/", label: "Inicio" },
   { href: "/servicios/", label: "Servicios" },
+  { href: "/planes-mantencion/", label: "Planes" },
+  { href: "/sectores/", label: "Sectores" },
+  { href: "/cobertura/", label: "Cobertura" },
+  { href: "/proyectos/", label: "Proyectos" },
+  { href: "/contacto/", label: "Contacto" }
+];
+
+export const footerLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/servicios/", label: "Servicios" },
+  { href: "/proyectos/", label: "Proyectos" },
   { href: "/precios/", label: "Precios" },
   { href: "/planes-mantencion/", label: "Planes de Mantencion" },
   { href: "/sectores/", label: "Sectores" },
@@ -48,6 +59,21 @@ export const serviceLinks = [
   }
 ];
 
+export const serviceSubmenuLinks = [
+  { href: "/servicios/reparacion-techos-industriales/", label: "Reparacion de techos industriales" },
+  { href: "/servicios/reparacion-goteras-filtraciones/", label: "Reparacion de goteras y filtraciones" },
+  { href: "/servicios/impermeabilizacion-techos/", label: "Impermeabilizacion de techos" },
+  { href: "/servicios/cambio-techumbres-industriales/", label: "Cambio de techos industriales" },
+  { href: "/servicios/cambio-cubiertas-techos/", label: "Cambio de cubiertas y techos" },
+  { href: "/servicios/reparacion-por-tipo-de-cubierta/", label: "Reparacion por tipo de cubierta" },
+  { href: "/servicios/reparacion-cubiertas-naves-industriales/", label: "Cubiertas de naves industriales" },
+  { href: "/servicios/limpieza-reparacion-canaletas/", label: "Limpieza y reparacion de canaletas" },
+  { href: "/servicios/sellado-juntas-cumbreras/", label: "Sellado de juntas y cumbreras" },
+  { href: "/servicios/inspeccion-tecnica-techos/", label: "Inspeccion tecnica de techos" },
+  { href: "/servicios/mantencion-techumbres-empresas/", label: "Mantencion de techumbres empresas" },
+  { href: "/servicios/cotizacion-reparacion-techos/", label: "Cotizacion de reparacion de techos" }
+];
+
 export const sectorCards = [
   "Bancos y edificios corporativos",
   "Supermercados y retail",
@@ -55,6 +81,21 @@ export const sectorCards = [
   "Clinicas e instituciones de salud",
   "Centros logisticos y bodegas",
   "Empresas con casa matriz y sucursales"
+];
+
+export const sectorSubmenuLinks = [
+  { href: "/sectores/#bancos-corporativos", label: "Bancos y corporativos" },
+  { href: "/sectores/#supermercados-retail", label: "Supermercados y retail" },
+  { href: "/sectores/#educacion", label: "Educacion" },
+  { href: "/sectores/#salud", label: "Instituciones de salud" },
+  { href: "/sectores/#logistica-bodegas", label: "Logistica y bodegas" },
+  { href: "/sectores/#matriz-sucursales", label: "Casa matriz y sucursales" }
+];
+
+export const planSubmenuLinks = [
+  { href: "/planes-mantencion/#plan-preventivo", label: "Plan Preventivo" },
+  { href: "/planes-mantencion/#plan-operacional", label: "Plan Operacional" },
+  { href: "/planes-mantencion/#plan-critico", label: "Plan Critico" }
 ];
 
 export interface CoveragePage {

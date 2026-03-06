@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
 import { coveragePages } from "../../data/site";
 
 const title = "Cobertura de reparacion de techos en Chile | Techos Corporativos";
@@ -25,7 +26,10 @@ const description =
   <section class="section">
     <div class="wrap grid-2">
       <article class="panel card">
-        <h2>Comunas de cobertura prioritaria (RM)</h2>
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="map-pin" size={18} /></span>
+          Comunas de cobertura prioritaria (RM)
+        </h2>
         <p>
           Creamos una subpagina por comuna para que revises alcance tecnico, foco operativo y
           tiempos de atencion:
@@ -35,6 +39,7 @@ const description =
             coveragePages.map((commune) => (
               <li>
                 <a href={`/reparacion-techos/${commune.slug}/`}>
+                  <span class="commune-icon"><Icon name="map-pin" size={15} /></span>
                   <strong>{commune.name}</strong>
                   <small>{commune.responseWindow}</small>
                 </a>
@@ -44,21 +49,27 @@ const description =
         </ul>
       </article>
       <article class="panel card">
-        <h2>Zonas de atencion complementaria</h2>
-        <ul class="clean">
-          <li>Region Metropolitana (otras comunas por coordinacion)</li>
-          <li>Valparaiso y zona centro</li>
-          <li>Biobio y macrozona sur</li>
-          <li>Atencion en otras regiones por requerimiento</li>
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="building" size={18} /></span>
+          Zonas de atencion complementaria
+        </h2>
+        <ul class="list-icon">
+          <li><Icon name="map-pin" class="bullet-icon" size={16} /><span>Region Metropolitana (otras comunas por coordinacion)</span></li>
+          <li><Icon name="map-pin" class="bullet-icon" size={16} /><span>Valparaiso y zona centro</span></li>
+          <li><Icon name="map-pin" class="bullet-icon" size={16} /><span>Biobio y macrozona sur</span></li>
+          <li><Icon name="map-pin" class="bullet-icon" size={16} /><span>Atencion en otras regiones por requerimiento</span></li>
         </ul>
       </article>
       <article class="panel card card-full">
-        <h2>Modelo de coordinacion</h2>
-        <ul class="clean">
-          <li>Visita tecnica inicial y levantamiento</li>
-          <li>Planificacion por sector y horario operativo</li>
-          <li>Ejecucion por etapas</li>
-          <li>Reporte consolidado por sede o red</li>
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="checklist" size={18} /></span>
+          Modelo de coordinacion
+        </h2>
+        <ul class="list-icon">
+          <li><Icon name="tool" class="bullet-icon" size={16} /><span>Visita tecnica inicial y levantamiento</span></li>
+          <li><Icon name="checklist" class="bullet-icon" size={16} /><span>Planificacion por sector y horario operativo</span></li>
+          <li><Icon name="wrench" class="bullet-icon" size={16} /><span>Ejecucion por etapas</span></li>
+          <li><Icon name="chart" class="bullet-icon" size={16} /><span>Reporte consolidado por sede o red</span></li>
         </ul>
       </article>
     </div>
@@ -97,7 +108,7 @@ const description =
     gap: 0.18rem;
     border: 1px solid var(--line);
     border-radius: 10px;
-    background: #f7fbfd;
+    background: #f3f5f7;
     padding: 0.5rem 0.65rem;
     color: var(--ink);
     text-decoration: none;
@@ -105,6 +116,7 @@ const description =
 
   .communes a strong {
     font-size: 1rem;
+    margin-top: 0.1rem;
   }
 
   .communes a small {
@@ -113,8 +125,13 @@ const description =
   }
 
   .communes a:hover {
-    border-color: #aec9da;
-    background: #f0f8fc;
+    border-color: #c5cdd7;
+    background: #eceff3;
+  }
+
+  .commune-icon {
+    color: var(--accent);
+    line-height: 0;
   }
 
   @media (max-width: 640px) {

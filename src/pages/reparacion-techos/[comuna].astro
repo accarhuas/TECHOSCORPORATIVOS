@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
 import { coveragePages, serviceLinks, siteConfig } from "../../data/site";
 
 export function getStaticPaths() {
@@ -95,15 +96,35 @@ const nearby = coveragePages.filter((item) => item.slug !== page.slug).slice(0, 
   <section class="section">
     <div class="wrap grid-2">
       <article class="panel card">
-        <h2>Tipo de operaciones que atendemos en {page.name}</h2>
-        <ul class="clean">
-          {page.localFocus.map((item: string) => <li>{item}</li>)}
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="building" size={18} /></span>
+          Tipo de operaciones que atendemos en {page.name}
+        </h2>
+        <ul class="list-icon">
+          {
+            page.localFocus.map((item: string) => (
+              <li>
+                <Icon name="shield" class="bullet-icon" size={16} />
+                <span>{item}</span>
+              </li>
+            ))
+          }
         </ul>
       </article>
       <article class="panel card">
-        <h2>Problemas de cubierta mas frecuentes</h2>
-        <ul class="clean">
-          {page.commonIssues.map((item: string) => <li>{item}</li>)}
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="tool" size={18} /></span>
+          Problemas de cubierta mas frecuentes
+        </h2>
+        <ul class="list-icon">
+          {
+            page.commonIssues.map((item: string) => (
+              <li>
+                <Icon name="wrench" class="bullet-icon" size={16} />
+                <span>{item}</span>
+              </li>
+            ))
+          }
         </ul>
       </article>
     </div>
@@ -115,6 +136,7 @@ const nearby = coveragePages.filter((item) => item.slug !== page.slug).slice(0, 
       <div class="grid-2 cards">
         {serviceLinks.map((service) => (
           <article class="panel card">
+            <span class="icon-chip icon-chip-accent"><Icon name="checklist" size={18} /></span>
             <h3>{service.title}</h3>
             <p>{service.summary}</p>
             <a href={service.href}>Ver servicio</a>
@@ -127,7 +149,10 @@ const nearby = coveragePages.filter((item) => item.slug !== page.slug).slice(0, 
   <section class="section">
     <div class="wrap grid-2">
       <article class="panel card">
-        <h2>Preguntas frecuentes en {page.name}</h2>
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="chat" size={18} /></span>
+          Preguntas frecuentes en {page.name}
+        </h2>
         {page.faq.map((item: { question: string; answer: string }) => (
           <div class="faq-item">
             <h3>{item.question}</h3>
@@ -136,9 +161,19 @@ const nearby = coveragePages.filter((item) => item.slug !== page.slug).slice(0, 
         ))}
       </article>
       <article class="panel card">
-        <h2>Otras comunas de cobertura cercana</h2>
-        <ul class="clean">
-          {nearby.map((item) => <li><a href={`/reparacion-techos/${item.slug}/`}>{item.name}</a></li>)}
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="map-pin" size={18} /></span>
+          Otras comunas de cobertura cercana
+        </h2>
+        <ul class="list-icon">
+          {
+            nearby.map((item) => (
+              <li>
+                <Icon name="map-pin" class="bullet-icon" size={16} />
+                <a href={`/reparacion-techos/${item.slug}/`}>{item.name}</a>
+              </li>
+            ))
+          }
         </ul>
         <div class="hero-actions">
           <a class="btn btn-primary" href="/contacto/">Hablar con un asesor tecnico</a>
@@ -155,7 +190,7 @@ const nearby = coveragePages.filter((item) => item.slug !== page.slug).slice(0, 
 
   .response {
     margin: 0.2rem 0 0.95rem;
-    color: #eaf6fe;
+    color: #e5e9ee;
   }
 
   .faq-item + .faq-item {

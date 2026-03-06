@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "./Icon.astro";
 
 interface Props {
   title: string;
@@ -29,16 +30,36 @@ const { title, description, h1, intro, bullets, process } = Astro.props;
   <section class="section">
     <div class="wrap grid-2">
       <article class="panel card">
-        <h2>Que incluye este servicio</h2>
-        <ul class="clean">
-          {bullets.map((item) => <li>{item}</li>)}
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="checklist" size={18} /></span>
+          Que incluye este servicio
+        </h2>
+        <ul class="list-icon">
+          {
+            bullets.map((item) => (
+              <li>
+                <Icon name="shield" class="bullet-icon" size={16} />
+                <span>{item}</span>
+              </li>
+            ))
+          }
         </ul>
       </article>
       <article class="panel card">
-        <h2>Metodologia de ejecucion</h2>
-        <ol>
-          {process.map((step) => <li>{step}</li>)}
-        </ol>
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="tool" size={18} /></span>
+          Metodologia de ejecucion
+        </h2>
+        <ul class="list-icon">
+          {
+            process.map((step) => (
+              <li>
+                <Icon name="clock" class="bullet-icon" size={16} />
+                <span>{step}</span>
+              </li>
+            ))
+          }
+        </ul>
       </article>
     </div>
   </section>
@@ -47,15 +68,5 @@ const { title, description, h1, intro, bullets, process } = Astro.props;
 <style>
   .card {
     padding: 1rem;
-  }
-
-  ol {
-    margin: 0;
-    padding-left: 1.2rem;
-    color: var(--ink-soft);
-  }
-
-  li {
-    margin-bottom: 0.45rem;
   }
 </style>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
 import { siteConfig } from "../../data/site";
 
 const title = "Nosotros | Equipo tecnico de techumbres B2B";
@@ -22,21 +23,27 @@ const description =
   <section class="section">
     <div class="wrap grid-2">
       <article class="panel card">
-        <h2>Nuestro enfoque</h2>
-        <ul class="clean">
-          <li>Diagnostico tecnico antes de intervenir</li>
-          <li>Ejecucion por criticidad y riesgo</li>
-          <li>Reportes claros para decisiones de gerencia</li>
-          <li>Planificacion para no detener operacion</li>
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="shield" size={18} /></span>
+          Nuestro enfoque
+        </h2>
+        <ul class="list-icon">
+          <li><Icon name="checklist" class="bullet-icon" size={16} /><span>Diagnostico tecnico antes de intervenir</span></li>
+          <li><Icon name="tool" class="bullet-icon" size={16} /><span>Ejecucion por criticidad y riesgo</span></li>
+          <li><Icon name="chart" class="bullet-icon" size={16} /><span>Reportes claros para decisiones de gerencia</span></li>
+          <li><Icon name="clock" class="bullet-icon" size={16} /><span>Planificacion para no detener operacion</span></li>
         </ul>
       </article>
       <article class="panel card">
-        <h2>Datos clave</h2>
-        <ul class="clean">
-          <li>{siteConfig.yearsExperience} de experiencia acumulada</li>
-          <li>Atencion para empresas con multiples sedes</li>
-          <li>Cobertura nacional segun plan operativo</li>
-          <li>Coordinacion con equipos de mantenimiento internos</li>
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="building" size={18} /></span>
+          Datos clave
+        </h2>
+        <ul class="list-icon">
+          <li><Icon name="clock" class="bullet-icon" size={16} /><span>{siteConfig.yearsExperience} de experiencia acumulada</span></li>
+          <li><Icon name="building" class="bullet-icon" size={16} /><span>Atencion para empresas con multiples sedes</span></li>
+          <li><Icon name="map-pin" class="bullet-icon" size={16} /><span>Cobertura nacional segun plan operativo</span></li>
+          <li><Icon name="chat" class="bullet-icon" size={16} /><span>Coordinacion con equipos de mantenimiento internos</span></li>
         </ul>
       </article>
     </div>

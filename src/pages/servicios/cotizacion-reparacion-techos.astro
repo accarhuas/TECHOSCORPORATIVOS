@@ -1,0 +1,27 @@
+---
+import ServicePage from "../../components/ServicePage.astro";
+
+const title = "Cotizacion de reparacion de techos | Techos Corporativos";
+const description =
+  "Solicita cotizacion de reparacion de techos para empresas en Chile. Presupuesto tecnico para filtraciones, impermeabilizacion y cambio de cubierta.";
+---
+
+<ServicePage
+  title={title}
+  description={description}
+  h1="Cotizacion tecnica para reparacion de techos"
+  intro="Preparamos propuestas tecnicas y economicas para empresas con una ruta clara de intervencion segun urgencia y criticidad."
+  bullets={[
+    "Levantamiento de requerimiento por sede o sucursal",
+    "Visita tecnica para validar causa y alcance real",
+    "Presupuesto detallado por actividad y metraje",
+    "Alternativas de reparacion, mejora o cambio de cubierta",
+    "Cronograma de ejecucion con recomendaciones preventivas"
+  ]}
+  process={[
+    "Recepcion de datos base: comuna, tipo de inmueble y urgencia",
+    "Evaluacion en terreno y diagnostico tecnico",
+    "Envio de propuesta formal con alcance y plazos",
+    "Ajustes finales y programacion de inicio"
+  ]}
+/>

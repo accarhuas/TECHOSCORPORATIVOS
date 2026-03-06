@@ -1,10 +1,36 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
 import { sectorCards } from "../../data/site";
 
 const title = "Sectores atendidos | Reparacion de techos B2B";
 const description =
   "Atendemos bancos, retail, colegios, salud, bodegas y empresas con sucursales. Mantencion y reparacion de techumbres en Chile.";
+
+const sectorIds = [
+  "bancos-corporativos",
+  "supermercados-retail",
+  "educacion",
+  "salud",
+  "logistica-bodegas",
+  "matriz-sucursales"
+];
+
+const sectorSummaries = [
+  "Continuidad de operacion en oficinas, salas tecnicas y areas de atencion al cliente.",
+  "Intervenciones fuera de horario para evitar impacto en salas de venta y bodegas.",
+  "Planificacion por calendario academico y foco en seguridad de estudiantes y equipos.",
+  "Protocolos estrictos para areas sensibles y control preventivo de filtraciones.",
+  "Ejecucion por panos para no detener procesos de recepcion, almacenamiento y despacho.",
+  "Gestion unificada para multiples sedes con estandar tecnico comun y reportes centralizados."
+];
+
+const sectorSections = sectorCards.map((title, index) => ({
+  id: sectorIds[index] || `sector-${index + 1}`,
+  title,
+  summary: sectorSummaries[index] || "Servicio ajustado a criticidad operativa y continuidad del negocio.",
+  icon: ["building", "chart", "shield", "checklist", "tool", "map-pin"][index] || "building"
+}));
 ---
 
 <BaseLayout title={title} description={description}>
@@ -25,13 +51,14 @@ const description =
   <section class="section">
     <div class="wrap grid-3 cards">
       {
-        sectorCards.map((sector) => (
-          <article class="panel card">
-            <h2>{sector}</h2>
-            <p>
-              Plan de trabajo por etapas, reportes centralizados y ejecucion sin frenar
-              continuidad del negocio.
-            </p>
+        sectorSections.map((sector) => (
+          <article id={sector.id} class="panel card">
+            <h2 class="title-with-icon">
+              <span class="icon-chip icon-chip-accent"><Icon name={sector.icon} size={18} /></span>
+              {sector.title}
+            </h2>
+            <p>{sector.summary}</p>
+            <a href="/contacto/">Solicitar propuesta para este sector</a>
           </article>
         ))
       }
@@ -42,5 +69,16 @@ const description =
 <style>
   .card {
     padding: 1rem;
+    scroll-margin-top: 95px;
+  }
+
+  .card a {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--brand);
+  }
+
+  .card a:hover {
+    text-decoration: underline;
   }
 </style>

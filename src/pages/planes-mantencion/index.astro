@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
 
 const title = "Planes de mantencion de techumbres | Techos Corporativos";
 const description =
@@ -23,31 +24,40 @@ const description =
 
   <section class="section">
     <div class="wrap grid-3 cards">
-      <article class="panel card">
-        <h2>Plan Preventivo</h2>
+      <article id="plan-preventivo" class="panel card">
+        <h2 class="title-with-icon">
+          <span class="icon-chip icon-chip-accent"><Icon name="shield" size={18} /></span>
+          Plan Preventivo
+        </h2>
         <p>2 visitas al ano. Recomendado para instalaciones de riesgo medio.</p>
-        <ul class="clean">
-          <li>Inspeccion semestral</li>
-          <li>Limpieza de puntos criticos</li>
-          <li>Informe tecnico de estado</li>
+        <ul class="list-icon">
+          <li><Icon name="clock" class="bullet-icon" size={16} /><span>Inspeccion semestral</span></li>
+          <li><Icon name="tool" class="bullet-icon" size={16} /><span>Limpieza de puntos criticos</span></li>
+          <li><Icon name="checklist" class="bullet-icon" size={16} /><span>Informe tecnico de estado</span></li>
         </ul>
       </article>
-      <article class="panel card">
-        <h2>Plan Operacional</h2>
+      <article id="plan-operacional" class="panel card">
+        <h2 class="title-with-icon">
+          <span class="icon-chip icon-chip-accent"><Icon name="tool" size={18} /></span>
+          Plan Operacional
+        </h2>
         <p>4 visitas al ano para sedes con operacion continua.</p>
-        <ul class="clean">
-          <li>Revision trimestral</li>
-          <li>Mantencion de sellos y fijaciones</li>
-          <li>Priorizacion de mejoras</li>
+        <ul class="list-icon">
+          <li><Icon name="clock" class="bullet-icon" size={16} /><span>Revision trimestral</span></li>
+          <li><Icon name="wrench" class="bullet-icon" size={16} /><span>Mantencion de sellos y fijaciones</span></li>
+          <li><Icon name="chart" class="bullet-icon" size={16} /><span>Priorizacion de mejoras</span></li>
         </ul>
       </article>
-      <article class="panel card">
-        <h2>Plan Critico</h2>
+      <article id="plan-critico" class="panel card">
+        <h2 class="title-with-icon">
+          <span class="icon-chip icon-chip-accent"><Icon name="building" size={18} /></span>
+          Plan Critico
+        </h2>
         <p>6 a 12 visitas para infraestructura sensible.</p>
-        <ul class="clean">
-          <li>Monitoreo mensual o bimensual</li>
-          <li>Respuesta prioritaria</li>
-          <li>Reporteria consolidada por sede</li>
+        <ul class="list-icon">
+          <li><Icon name="clock" class="bullet-icon" size={16} /><span>Monitoreo mensual o bimensual</span></li>
+          <li><Icon name="shield" class="bullet-icon" size={16} /><span>Respuesta prioritaria</span></li>
+          <li><Icon name="checklist" class="bullet-icon" size={16} /><span>Reporteria consolidada por sede</span></li>
         </ul>
       </article>
     </div>
@@ -55,19 +65,22 @@ const description =
 
   <section class="section">
     <div class="wrap panel card">
-      <h2>Que incluye cada plan</h2>
+      <h2 class="title-with-icon">
+        <span class="icon-chip"><Icon name="checklist" size={18} /></span>
+        Que incluye cada plan
+      </h2>
       <div class="grid-2">
-        <ul class="clean">
-          <li>Inspeccion calendarizada por temporada</li>
-          <li>Deteccion temprana de filtraciones</li>
-          <li>Revision de canaletas y bajadas</li>
-          <li>Ajuste de sellos y fijaciones</li>
+        <ul class="list-icon">
+          <li><Icon name="clock" class="bullet-icon" size={16} /><span>Inspeccion calendarizada por temporada</span></li>
+          <li><Icon name="shield" class="bullet-icon" size={16} /><span>Deteccion temprana de filtraciones</span></li>
+          <li><Icon name="tool" class="bullet-icon" size={16} /><span>Revision de canaletas y bajadas</span></li>
+          <li><Icon name="wrench" class="bullet-icon" size={16} /><span>Ajuste de sellos y fijaciones</span></li>
         </ul>
-        <ul class="clean">
-          <li>Registro fotografico de hallazgos</li>
-          <li>Reporte tecnico para auditoria interna</li>
-          <li>Presupuesto priorizado por periodo</li>
-          <li>Seguimiento por criticidad operacional</li>
+        <ul class="list-icon">
+          <li><Icon name="checklist" class="bullet-icon" size={16} /><span>Registro fotografico de hallazgos</span></li>
+          <li><Icon name="chat" class="bullet-icon" size={16} /><span>Reporte tecnico para auditoria interna</span></li>
+          <li><Icon name="chart" class="bullet-icon" size={16} /><span>Presupuesto priorizado por periodo</span></li>
+          <li><Icon name="building" class="bullet-icon" size={16} /><span>Seguimiento por criticidad operacional</span></li>
         </ul>
       </div>
     </div>
@@ -77,5 +90,6 @@ const description =
 <style>
   .card {
     padding: 1rem;
+    scroll-margin-top: 95px;
   }
 </style>

@@ -1,0 +1,161 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
+import { siteConfig } from "../../data/site";
+
+const title = "Proyectos de reparacion y cambio de techos | Techos Corporativos";
+const description =
+  "Casos y proyectos de reparacion de techos, cambio de techumbres e impermeabilizacion para empresas, bodegas, colegios y sucursales en Chile.";
+
+const projectCases = [
+  {
+    sector: "Centro logistico en Quilicura",
+    challenge: "Filtraciones sobre zona de picking y saturacion de canaletas en invierno.",
+    solution: "Reparacion por panos, recambio de fijaciones criticas y limpieza tecnica de bajadas.",
+    result: "Operacion continua y disminucion de eventos de goteras en temporada alta."
+  },
+  {
+    sector: "Bodega industrial en Lampa",
+    challenge: "Desgaste de uniones en cubierta metalica y filtracion recurrente en cumbrera.",
+    solution: "Sellado de juntas, refuerzo de traslapos y plan de inspeccion trimestral.",
+    result: "Mayor estanqueidad y control preventivo con reportes para mantenimiento."
+  },
+  {
+    sector: "Supermercado en Maipu",
+    challenge: "Goteras en sala de ventas durante lluvias intensas.",
+    solution: "Intervencion fuera de horario, reparacion focalizada e impermeabilizacion sectorizada.",
+    result: "Reduccion de riesgo operativo sin cerrar la tienda."
+  },
+  {
+    sector: "Colegio en Recoleta",
+    challenge: "Filtraciones en salas y pasillos con techumbre antigua.",
+    solution: "Diagnostico por zonas, cambio parcial de techumbre y sellado en encuentros.",
+    result: "Inicio de clases sin urgencias de mantencion por lluvia."
+  },
+  {
+    sector: "Clinica en Independencia",
+    challenge: "Humedad en areas tecnicas y accesos criticos.",
+    solution: "Reparacion por etapas con protocolo de seguridad y plan semestral.",
+    result: "Continuidad de servicio y trazabilidad tecnica por visita."
+  },
+  {
+    sector: "Red de sucursales en Santiago",
+    challenge: "Mantenimiento reactivo en multiples sedes sin estandar comun.",
+    solution: "Programa centralizado de reparacion y mantencion con priorizacion por criticidad.",
+    result: "Mejor control presupuestario y respuesta mas rapida ante filtraciones."
+  }
+];
+
+const projectSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Proyectos de reparacion y cambio de techos",
+  description,
+  url: `${siteConfig.siteUrl}/proyectos/`,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: projectCases.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.sector
+    }))
+  }
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(projectSchema)} />
+
+  <section class="hero-shell">
+    <div class="wrap hero-box">
+      <span class="kicker">Experiencia en terreno</span>
+      <h1>Proyectos de reparacion y cambio de techos para empresas</h1>
+      <p>
+        Revisa ejemplos de trabajos en infraestructura empresarial. Ejecutamos reparacion de techos,
+        cambio de techumbres e impermeabilizacion con foco en continuidad operativa.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/contacto/">Solicitar visita tecnica</a>
+        <a class="btn btn-secondary" href="/servicios/">Ver todos los servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Casos de referencia por tipo de cliente</h2>
+      <p>
+        Cada proyecto parte con inspeccion tecnica y termina con recomendaciones para evitar
+        recurrencia de goteras y filtraciones.
+      </p>
+      <div class="grid-2 cards">
+        {
+          projectCases.map((item) => (
+            <article class="panel card">
+              <span class="icon-chip icon-chip-accent"><Icon name="building" size={18} /></span>
+              <h3>{item.sector}</h3>
+              <p><strong>Desafio:</strong> {item.challenge}</p>
+              <p><strong>Solucion:</strong> {item.solution}</p>
+              <p><strong>Resultado:</strong> {item.result}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid-2">
+      <article class="panel card">
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="checklist" size={18} /></span>
+          Como ejecutamos proyectos
+        </h2>
+        <ul class="list-icon">
+          <li><Icon name="map-pin" class="bullet-icon" size={16} /><span>Levantamiento tecnico en terreno y analisis de criticidad.</span></li>
+          <li><Icon name="clock" class="bullet-icon" size={16} /><span>Plan de intervencion por etapas y ventana operativa.</span></li>
+          <li><Icon name="tool" class="bullet-icon" size={16} /><span>Ejecucion segura con registro fotografico y control de calidad.</span></li>
+          <li><Icon name="chart" class="bullet-icon" size={16} /><span>Informe final con acciones preventivas recomendadas.</span></li>
+        </ul>
+      </article>
+      <article class="panel card">
+        <h2 class="title-with-icon">
+          <span class="icon-chip"><Icon name="chat" size={18} /></span>
+          Quieres un proyecto similar?
+        </h2>
+        <p>
+          Cuentanos tipo de sede, metraje aproximado y urgencia. Te entregamos una propuesta tecnica
+          para reparacion, impermeabilizacion o cambio de techumbre.
+        </p>
+        <div class="cta-stack">
+          <a class="btn btn-primary" href="/contacto/">Pedir propuesta tecnica</a>
+          <a class="btn btn-secondary" href="/precios/">Ver precios referenciales</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .card {
+    padding: 1rem;
+  }
+
+  .card p {
+    margin-bottom: 0.65rem;
+  }
+
+  .card strong {
+    color: var(--brand-2);
+  }
+
+  .list-icon {
+    margin-bottom: 0.4rem;
+  }
+
+  .cta-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+</style>
