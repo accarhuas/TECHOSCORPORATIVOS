@@ -1,10 +1,10 @@
 export const siteConfig = {
   name: "Techos Corporativos",
   legalName: "Techos Corporativos SpA",
-  phoneDisplay: "+56 9 0000 0000",
-  phoneRaw: "+56900000000",
+  phoneDisplay: "+56 9 8834 2791",
+  phoneRaw: "+56988342791",
   email: "contacto@techoscorporativos.cl",
-  whatsapp: "https://wa.me/56900000000",
+  whatsapp: "https://wa.me/56988342791",
   address: "Santiago, Chile",
   serviceArea: "Chile",
   yearsExperience: "12+",
