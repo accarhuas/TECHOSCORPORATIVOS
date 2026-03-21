@@ -5,7 +5,7 @@ import vercel from "@astrojs/vercel";
 const site =
   process.env.PUBLIC_SITE_URL ||
   process.env.SITE_URL ||
-  "https://techoscorporativos.vercel.app";
+  "https://techoscorporativos.cl";
 
 export default defineConfig({
   site,

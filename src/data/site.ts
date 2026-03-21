@@ -11,7 +11,7 @@ export const siteConfig = {
   siteUrl:
     import.meta.env.PUBLIC_SITE_URL ||
     import.meta.env.SITE_URL ||
-    "https://techoscorporativos.vercel.app"
+    "https://techoscorporativos.cl"
 };
 
 export const navLinks = [

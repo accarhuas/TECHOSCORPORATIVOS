@@ -10,8 +10,9 @@ interface Props {
 }
 
 const { title, description, noindex = false } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
-const ogImage = new URL("/icon-512.png", Astro.site).toString();
+const siteOrigin = Astro.site ?? new URL(siteConfig.siteUrl);
+const canonical = new URL(Astro.url.pathname, siteOrigin).toString();
+const ogImage = new URL("/icon-512.png", siteOrigin).toString();
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
